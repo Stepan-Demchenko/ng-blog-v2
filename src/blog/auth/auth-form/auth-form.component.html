@@ -1,3 +1,14 @@
-<p>
-  auth-form works!
-</p>
+<ng-content select="h1"></ng-content>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" formControlName="email" name="email">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Password" formControlName="password" name="password"
+           [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="showPassword()">{{icon}}</mat-icon>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-raised-button type="button" (click)="close()">Decline</button>
+    <ng-content select="button"></ng-content>
+  </div>

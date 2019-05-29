@@ -1,3 +1,4 @@
-<p>
-  login works!
-</p>
+<app-auth-form (formSubmit)="signIn($event)">
+  <h1 mat-dialog-title>Authorization</h1>
+  <button type="submit" color="primary" mat-raised-button>Log In</button>
+</app-auth-form>

@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10 content">
+    <form action="" [formGroup]="postForm">
+      <mat-form-field class="example-full-width">
+        <input matInput name="title" placeholder="title" formControlName="title">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput name="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                  placeholder="description" formControlName="description"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput cdkTextareaAutosize name="content"
+                  #autosize="cdkTextareaAutosize" placeholder="content"
+                  formControlName="content"></textarea>
+        <!--        <mat-error *ngIf="required">-->
+        <!--          Email is <strong>required</strong>-->
+        <!--        </mat-error>-->
+      </mat-form-field>
+      <button mat-button type="button" *ngIf="!post" class="button" (click)="createPost()">
+        Create Post
+        <mat-icon color="accent">save</mat-icon>
+      </button>
+      <button mat-button *ngIf="post" type="button" class="button" (click)="editPost()">
+        Save Post
+        <mat-icon color="accent">save</mat-icon>
+      </button>
+
+      <button mat-button class="button" type="button" [routerLink]="['../../']">
+        Cancel
+        <mat-icon color="warn">cancel</mat-icon>
+      </button>
+      <input type="file" (change)="selectImg($event)">
+      <img [src]="imgUrl" height="200">
+    </form>
+  </div>
+  <div class="col-1"></div>
+</div>
