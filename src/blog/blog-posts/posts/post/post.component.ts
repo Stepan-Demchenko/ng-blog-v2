@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostsService} from '../services/posts.service';
 import {Observable, Subject} from 'rxjs';
-import {switchMap, takeUntil} from 'rxjs/operators';
+import {map, switchMap, takeUntil} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InfoMessageService} from '../../../services/info-message.service';
 import {Posts} from '../models/posts';
@@ -14,15 +14,18 @@ import {Posts} from '../models/posts';
 })
 export class PostComponent implements OnInit, OnDestroy {
   private unsubscribe: Subject<void> = new Subject();
-  public posts$: Observable<Posts>;
   private postId;
+  public posts$: Observable<Posts>;
+
 
   constructor(
     private route: Router,
     private postsService: PostsService,
     private infoMessage: InfoMessageService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {
+
+
   }
 
   ngOnInit() {

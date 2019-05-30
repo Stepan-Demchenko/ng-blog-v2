@@ -7,8 +7,10 @@ import {AuthService} from '../../../auth/services/auth.service';
 import {Observable, Subject} from 'rxjs';
 import {Posts} from '../models/posts';
 import {Auth} from '../../../auth/models/auth';
-import {switchMap, takeUntil} from 'rxjs/operators';
+import {map, switchMap, takeUntil} from 'rxjs/operators';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
+import {Store} from '@ngrx/store';
+import * as fromStore from '../../../store';
 
 @Component({
   selector: 'app-list-posts',
@@ -27,19 +29,21 @@ export class ListPostsComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private postsService: PostsService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<fromStore.PostsState>,
   ) {
   }
 
   ngOnInit() {
-    this.isAuth = this.authService.currentUser;
-    this.listData$ = this.route.params.pipe(switchMap(event => this.postsService.getList()));
-
+    // this.isAuth = this.authService.currentUser;
+    // this.listData$ = this.route.params.pipe(switchMap(event => this.postsService.getList()));
+    this.listData$ = this.store.select(fromStore.getAllPosts);
+    this.store.dispatch(new fromStore.LoadPosts());
   }
 
-  public getList() {
-    this.listData$ = this.postsService.getList();
-  }
+  // public getList() {
+  //   this.listData$ = this.postsService.getList();
+  // }
 
   public deletePostDialog(id: string, title: string) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {

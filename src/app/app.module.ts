@@ -1,3 +1,5 @@
+import {EffectsModule} from '@ngrx/effects';
+import {PostsEffect} from '../blog/store/effects/posts.effect';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
@@ -10,8 +12,10 @@ import {NavigationComponent} from '../blog/navigation/navigation.component';
 import {AuthModalComponent} from '../blog/auth/auth-modal/auth-modal.component';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptors} from 'src/blog/shared/interceptors/http-interceptors';
-import {PostsModule} from '../blog/blog-posts/posts/posts.module';
-
+import {StoreModule} from '@ngrx/store';
+import {reducers, metaReducers} from '../blog/store/reducers';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import {PostsModule} from '../blog/blog-posts/posts/posts.module';
     HttpClientModule,
     NgbModule.forRoot(),
     MaterialModule,
+    StoreModule.forRoot({}, {metaReducers}),
+    EffectsModule.forRoot([PostsEffect]),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
   ],
   entryComponents: [
     AuthModalComponent

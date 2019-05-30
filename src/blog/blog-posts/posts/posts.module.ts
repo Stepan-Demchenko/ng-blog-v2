@@ -7,6 +7,9 @@ import {PostFormComponent} from './post/post-form/post-form.component';
 import {DeleteDialogComponent} from './list-posts/delete-dialog/delete-dialog.component';
 import {MaterialModule} from '../../../app/material.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {StoreModule} from '@ngrx/store';
+import {reducers, effects} from '../../store';
+import {EffectsModule} from '@ngrx/effects';
 
 export const ROUTES: Routes = [
   {
@@ -35,7 +38,9 @@ export const ROUTES: Routes = [
     CommonModule,
     RouterModule.forChild(ROUTES),
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature('posts', reducers),
+    EffectsModule.forFeature(effects)
   ],
   entryComponents: [DeleteDialogComponent]
 })
