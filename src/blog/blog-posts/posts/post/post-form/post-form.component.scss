@@ -3,12 +3,7 @@
   line-height: 2;
   font-size: 1.5vh;
 
-  .button {
-    color: white;
-  }
-
   h1 {
-    color: white;
     text-align: center;
   }
 
@@ -16,7 +11,6 @@
     mat-form-field {
       width: 100%;
       font-size: 1.6vh;
-      color: white;
 
       textarea {
         overflow: hidden;
@@ -25,4 +19,13 @@
   }
 }
 
+.choose-img {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background-color: blue;
 
+  &:hover, &:focus {
+    background-color: red;
+  }
+}

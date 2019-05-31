@@ -1,38 +1,69 @@
 <div class="row">
   <div class="col-1"></div>
   <div class="col-10 content">
-    <form action="" [formGroup]="postForm">
-      <mat-form-field class="example-full-width">
-        <input matInput name="title" placeholder="title" formControlName="title">
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput name="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-                  placeholder="description" formControlName="description"></textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput cdkTextareaAutosize name="content"
-                  #autosize="cdkTextareaAutosize" placeholder="content"
-                  formControlName="content"></textarea>
-        <!--        <mat-error *ngIf="required">-->
-        <!--          Email is <strong>required</strong>-->
-        <!--        </mat-error>-->
-      </mat-form-field>
-      <button mat-button type="button" *ngIf="!post" class="button" (click)="createPost()">
-        Create Post
-        <mat-icon color="accent">save</mat-icon>
-      </button>
-      <button mat-button *ngIf="post" type="button" class="button" (click)="editPost()">
-        Save Post
-        <mat-icon color="accent">save</mat-icon>
-      </button>
+    <ng-container *ngIf="isCreate else editPost"><h1>Create Post</h1></ng-container>
+    <ng-template #editPost><h1>Edit Post</h1></ng-template>
+    <mat-card>
+      <form action="" [formGroup]="postForm">
+        <mat-card-header>
 
-      <button mat-button class="button" type="button" [routerLink]="['../../']">
-        Cancel
-        <mat-icon color="warn">cancel</mat-icon>
-      </button>
-      <input type="file" (change)="selectImg($event)">
-      <img [src]="imgUrl" height="200">
-    </form>
+          <mat-card-title>
+            <mat-form-field class="example-full-width">
+              <input matInput name="title" placeholder="Title" formControlName="title">
+              <mat-error *ngIf="postForm.get('title').invalid">
+                Title is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput name="title" placeholder="Author" formControlName="author">
+              <mat-error *ngIf="postForm.get('author').invalid">
+                Author field is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </mat-card-title>
+
+        </mat-card-header>
+
+        <img [src]="imgUrl || ''" height="200">
+
+        <mat-card-content>
+          <mat-form-field>
+        <textarea matInput name="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                  placeholder="Description" formControlName="description"></textarea>
+            <mat-error *ngIf="postForm.get('description').invalid">
+              Description field is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+        <textarea matInput cdkTextareaAutosize name="content"
+                  #autosize="cdkTextareaAutosize" placeholder="Content"
+                  formControlName="content"></textarea>
+            <mat-error *ngIf="postForm.get('content').invalid">
+              Content field is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+
+          <button [disabled]="required" mat-raised-button color="primary" type="button" *ngIf="!post" class="button"
+                  (click)="createPost()">
+            <mat-icon color="accent">save</mat-icon>
+            Create Post
+          </button>
+
+          <button [disabled]="required" mat-raised-button type="button" (click)="updatePost()">
+            Save Post
+          </button>
+
+          <button mat-button type="button" [routerLink]="['../../']">
+            Cancel
+            <mat-icon color="warn">cancel</mat-icon>
+          </button>
+          <input type="file" #fileInput id="file" (change)="selectImg($event)" hidden>
+          <button mat-raised-button color="primary" (click)="fileInput.click()">Choose Image</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
   </div>
   <div class="col-1"></div>
 </div>

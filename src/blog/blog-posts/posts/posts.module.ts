@@ -10,6 +10,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {reducers, effects} from '../../store';
 import {EffectsModule} from '@ngrx/effects';
+import {AuthGuard} from '../../shared/guard/auth.guard';
+import {PostResolver} from './resolvers/post.resolver';
 
 export const ROUTES: Routes = [
   {
@@ -22,10 +24,13 @@ export const ROUTES: Routes = [
     component: ListPostsComponent
   },
   {
+    canActivate: [AuthGuard],
     path: 'post/new',
     component: PostComponent
   },
   {
+    canActivate: [AuthGuard],
+    resolve: {post: PostResolver},
     path: 'post/:id',
     component: PostComponent
   }
@@ -43,6 +48,7 @@ export const ROUTES: Routes = [
     StoreModule.forFeature('posts', reducers),
     EffectsModule.forFeature(effects)
   ],
+  providers: [PostResolver],
   entryComponents: [DeleteDialogComponent]
 })
 export class PostsModule {

@@ -22,7 +22,7 @@ export class PostFormComponent implements OnChanges {
   id: string;
   postForm: FormGroup;
   imgUrl;
-
+  isCreate: boolean;
 
   constructor(
     public fb: FormBuilder,
@@ -33,18 +33,21 @@ export class PostFormComponent implements OnChanges {
   ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
+      author: ['', Validators.required],
       content: ['', Validators.required],
-      image: ['', Validators.required],
+      image: [''],
       description: ['', Validators.required]
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.post.currentValue) {
+      this.isCreate = false;
       const value = this.post;
       this.postForm.patchValue(value);
       this.imgUrl = this.postForm.value.image;
     } else {
+      this.isCreate = true;
       this.postForm.reset();
     }
   }
@@ -53,8 +56,12 @@ export class PostFormComponent implements OnChanges {
     this.create.emit(this.postForm.value);
   }
 
-  editPost() {
+  updatePost() {
     this.edit.emit(this.postForm.value);
+  }
+
+  get required(): boolean {
+    return this.postForm.invalid;
   }
 
   selectImg(event) {
