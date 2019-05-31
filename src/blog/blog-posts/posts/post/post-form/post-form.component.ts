@@ -7,7 +7,7 @@ import {PostsService} from '../../services/posts.service';
 import {InfoMessageService} from '../../../../services/info-message.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.scss']
@@ -20,10 +20,8 @@ export class PostFormComponent implements OnChanges {
 
   private unsubscribe: Subject<void> = new Subject();
   id: string;
-  listData$: Observable<Posts>;
   postForm: FormGroup;
   imgUrl;
-  imgPath;
 
 
   constructor(
@@ -46,6 +44,8 @@ export class PostFormComponent implements OnChanges {
       const value = this.post;
       this.postForm.patchValue(value);
       this.imgUrl = this.postForm.value.image;
+    } else {
+      this.postForm.reset();
     }
   }
 
@@ -60,9 +60,8 @@ export class PostFormComponent implements OnChanges {
   selectImg(event) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      // const imageData = new FormData();
-
       const reader = new FileReader();
+
       reader.readAsDataURL(file);
       reader.onload = (e) => {
         this.imgUrl = reader.result;

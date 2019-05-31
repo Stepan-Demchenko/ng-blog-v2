@@ -13,9 +13,11 @@ import {AuthModalComponent} from '../blog/auth/auth-modal/auth-modal.component';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptors} from 'src/blog/shared/interceptors/http-interceptors';
 import {StoreModule} from '@ngrx/store';
-import {reducers, metaReducers} from '../blog/store/reducers';
+import {metaReducers} from '../blog/store/reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import {StoreRouterConnectingModule, RouterStateSerializer} from '@ngrx/router-store';
+import {reducers, CustomSerializer} from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,20 @@ import {environment} from '../environments/environment';
     HttpClientModule,
     NgbModule.forRoot(),
     MaterialModule,
-    StoreModule.forRoot({}, {metaReducers}),
+    StoreModule.forRoot(reducers, {metaReducers}),
     EffectsModule.forRoot([PostsEffect]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreRouterConnectingModule,
+
   ],
   entryComponents: [
     AuthModalComponent
   ],
-  providers: [httpInterceptors],
+  providers: [httpInterceptors,
+    {
+      provide: RouterStateSerializer,
+      useClass: CustomSerializer
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

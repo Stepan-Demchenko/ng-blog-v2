@@ -29,6 +29,7 @@ export const ROUTES: Routes = [
     path: 'post/:id',
     component: PostComponent
   }
+
 ];
 
 

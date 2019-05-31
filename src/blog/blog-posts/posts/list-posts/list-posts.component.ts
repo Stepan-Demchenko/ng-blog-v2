@@ -7,7 +7,7 @@ import {AuthService} from '../../../auth/services/auth.service';
 import {Observable, Subject} from 'rxjs';
 import {Posts} from '../models/posts';
 import {Auth} from '../../../auth/models/auth';
-import {map, switchMap, takeUntil} from 'rxjs/operators';
+import {filter, map, switchMap, takeUntil} from 'rxjs/operators';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {Store} from '@ngrx/store';
 import * as fromStore from '../../../store';
@@ -35,7 +35,7 @@ export class ListPostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.isAuth = this.authService.currentUser;
+    this.isAuth = this.authService.currentUser;
     // this.listData$ = this.route.params.pipe(switchMap(event => this.postsService.getList()));
     this.listData$ = this.store.select(fromStore.getAllPosts);
     this.store.dispatch(new fromStore.LoadPosts());

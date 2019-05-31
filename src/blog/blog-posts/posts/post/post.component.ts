@@ -5,6 +5,8 @@ import {map, switchMap, takeUntil} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InfoMessageService} from '../../../services/info-message.service';
 import {Posts} from '../models/posts';
+import {Store} from '@ngrx/store';
+import * as fromStore from '../../../store';
 
 @Component({
   selector: 'app-post',
@@ -23,16 +25,22 @@ export class PostComponent implements OnInit, OnDestroy {
     private postsService: PostsService,
     private infoMessage: InfoMessageService,
     private activatedRoute: ActivatedRoute,
+    private store: Store<fromStore.PostsState>
   ) {
 
 
   }
 
   ngOnInit() {
-    this.postId = this.activatedRoute.snapshot.params.id;
-    this.posts$ = this.activatedRoute.params.pipe(switchMap(param => {
-      return this.postsService.getPost(param.id);
-    }));
+    if (this.activatedRoute.snapshot.params.id) {
+      this.postId = this.activatedRoute.snapshot.params.id;
+      this.posts$ = this.activatedRoute.params.pipe(switchMap(param => {
+        return this.postsService.getPost(param.id);
+      }));
+    } else {
+      this.posts$ = new Observable<Posts>();
+    }
+    // this.posts$ = this.store.select(fromStore.getSelectedPost);
   }
 
   addPost(event) {
