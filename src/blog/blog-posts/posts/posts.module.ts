@@ -30,7 +30,7 @@ export const ROUTES: Routes = [
   },
   {
     canActivate: [AuthGuard],
-    resolve: {post: PostResolver},
+    // resolve: {post: PostResolver},
     path: 'post/:id',
     component: PostComponent
   }

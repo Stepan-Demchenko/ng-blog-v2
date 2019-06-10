@@ -5,6 +5,8 @@ import {takeUntil} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InfoMessageService} from '../../../services/info-message.service';
 import {Posts} from '../models/posts';
+import {Store} from '@ngrx/store';
+import * as fromStore from '../../../store';
 
 
 @Component({
@@ -24,6 +26,7 @@ export class PostComponent implements OnInit, OnDestroy {
     private postsService: PostsService,
     private infoMessage: InfoMessageService,
     private activatedRoute: ActivatedRoute,
+    private store: Store<fromStore.PostsState>
   ) {
 
 
@@ -31,12 +34,12 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.postId = this.activatedRoute.snapshot.params.id;
-    if (this.activatedRoute.snapshot.params.id) {
-      this.activatedRoute.data.pipe(takeUntil(this.unsubscribe)).subscribe((data: any) => {
-        this.posts$ = of(data.post);
-      });
-    }
-    // this.posts$ = this.store.select(fromStore.getSelectedPost);
+    // if (this.activatedRoute.snapshot.params.id) {
+    //   this.activatedRoute.data.pipe(takeUntil(this.unsubscribe)).subscribe((data: any) => {
+    //     this.posts$ = of(data.post);
+    //   });
+    // }
+    this.posts$ = this.store.select(fromStore.getSelectedPost(this.postId));
   }
 
   addPost(event) {

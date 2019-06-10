@@ -18,12 +18,15 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {StoreRouterConnectingModule, RouterStateSerializer} from '@ngrx/router-store';
 import {reducers, CustomSerializer} from './store/reducers';
+import {LoaderComponent} from '../blog/shared/loader/loader.component';
+import {LoaderService} from '../blog/services/loader.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    AuthModalComponent
+    AuthModalComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import {reducers, CustomSerializer} from './store/reducers';
     AuthModalComponent
   ],
   providers: [httpInterceptors,
+    LoaderService,
     {
       provide: RouterStateSerializer,
       useClass: CustomSerializer

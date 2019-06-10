@@ -25,7 +25,6 @@ export class PostsService {
   }
 
   public update(id: string, data): Observable<any> {
-    console.log('lol');
     return this.http.put<Posts>(`${this.url}/${id}`, data);
   }
 
