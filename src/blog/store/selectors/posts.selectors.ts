@@ -1,7 +1,7 @@
 import {createSelector} from '@ngrx/store';
 import {PostsState} from '../reducers';
 import * as fromFeature from '../reducers/index';
-import {Posts} from '../../blog-posts/posts/models/posts';
+import {Posts} from '../../blog-posts/models/posts';
 
 export const getAllPosts = createSelector(fromFeature.getPostsState, (state: PostsState) => state.posts.data);
 

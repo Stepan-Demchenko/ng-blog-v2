@@ -1,4 +1,4 @@
-import {Posts} from '../../blog-posts/posts/models/posts';
+import {Posts} from '../../blog-posts/models/posts';
 import * as fromPosts from '../actions/posts.actions';
 
 export interface PostsState {

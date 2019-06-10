@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {PostsService} from '../../services/posts.service';
-import {InfoMessageService} from '../../../../services/info-message.service';
+import {InfoMessageService} from '../../../services/info-message.service';
 import {of, Subject} from 'rxjs';
 import {catchError, takeUntil} from 'rxjs/operators';
 

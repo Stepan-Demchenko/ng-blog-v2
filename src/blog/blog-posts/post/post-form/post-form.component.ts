@@ -4,7 +4,7 @@ import {Posts} from '../../models/posts';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
-import {InfoMessageService} from '../../../../services/info-message.service';
+import {InfoMessageService} from '../../../services/info-message.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -76,10 +76,4 @@ export class PostFormComponent implements OnChanges {
     }
     this.postForm.value.image = 'https://cdn.stocksnap.io/img-thumbs/960w/V5DUZ3DZYA.jpg';
   }
-
-  // get required() {
-  //   return (
-  //     this.postForm.get(controlName).hasError('required') && this.postForm.get(controlName).touched
-  //   );
-  // }
 }

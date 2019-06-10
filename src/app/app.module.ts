@@ -26,7 +26,7 @@ import {LoaderService} from '../blog/services/loader.service';
     AppComponent,
     NavigationComponent,
     AuthModalComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PostsService} from '../services/posts.service';
+import {PostsService} from '../../services/posts.service';
 import {Observable, of, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InfoMessageService} from '../../../services/info-message.service';
-import {Posts} from '../models/posts';
+import {Posts} from '../../models/posts';
 import {Store} from '@ngrx/store';
 import * as fromStore from '../../../store';
 

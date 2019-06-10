@@ -1,0 +1,12 @@
+<div class="post-container" *ngIf="post$|async as post">
+  <div class="image">
+    <img [src]="post.image" alt="image of post" width="100%">
+    <div class="text-over-image">{{post.title}}</div>
+  </div>
+  <div class="content">
+    <p>{{post.description}} {{post.content}}</p>
+  </div>
+  <div class="author">
+    {{post.author}}
+  </div>
+</div>

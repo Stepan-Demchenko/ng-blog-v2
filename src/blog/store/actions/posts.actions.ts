@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Posts} from '../../../blog/blog-posts/posts/models/posts';
+import {Posts} from '../../blog-posts/models/posts';
 
 export const ADD_POST = '[POST] Add';
 export const REMOVE_POST = '[POST] Remove';

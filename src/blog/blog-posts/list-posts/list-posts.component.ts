@@ -1,16 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {InfoMessageService} from '../../../services/info-message.service';
+import {InfoMessageService} from '../../services/info-message.service';
 import {MatDialog} from '@angular/material';
 import {PostsService} from '../services/posts.service';
-import {AuthService} from '../../../auth/services/auth.service';
+import {AuthService} from '../../auth/services/auth.service';
 import {Observable, Subject} from 'rxjs';
 import {Posts} from '../models/posts';
-import {Auth} from '../../../auth/models/auth';
+import {Auth} from '../../auth/models/auth';
 import {filter, map, switchMap, takeUntil} from 'rxjs/operators';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {Store} from '@ngrx/store';
-import * as fromStore from '../../../store';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-list-posts',
@@ -58,6 +58,14 @@ export class ListPostsComponent implements OnInit, OnDestroy {
     }, error1 => {
       this.infoMessage.alertShow('Something went wrong');
     });
+  }
+
+  read() {
+    return this.router.navigate([{
+      outlets: {
+        post: ['read-post']
+      }
+    }]);
   }
 
   ngOnDestroy(): void {
