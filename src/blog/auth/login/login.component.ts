@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {FormGroup} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
@@ -13,12 +13,15 @@ import {throwError} from 'rxjs';
 })
 export class LoginComponent {
 
+
   constructor(
     private infoMessage: InfoMessageService,
     private authService: AuthService,
     private dialog: MatDialog
   ) {
   }
+
+
 
   signIn(data: FormGroup) {
     this.authService.login(data.value).pipe(catchError(

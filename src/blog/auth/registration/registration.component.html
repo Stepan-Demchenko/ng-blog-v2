@@ -1,4 +1,4 @@
-<app-auth-form (formSubmit)="regUser($event)">
+<app-auth-form (formSubmit)="regUser($event)" #formContent>
   <h1 mat-dialog-title>Registration</h1>
-  <button mat-raised-button color="primary">Create account</button>
+  <button mat-raised-button color="primary" [disabled]="!formContent.form.valid">Create account</button>
 </app-auth-form>

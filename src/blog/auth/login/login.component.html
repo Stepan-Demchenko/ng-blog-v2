@@ -1,4 +1,4 @@
-<app-auth-form (formSubmit)="signIn($event)">
+<app-auth-form (formSubmit)="signIn($event)" #formContent>
   <h1 mat-dialog-title>Authorization</h1>
-  <button type="submit" color="primary" mat-raised-button>Log In</button>
+  <button type="submit" color="primary" mat-raised-button [disabled]="!formContent.form.valid">Log In</button>
 </app-auth-form>

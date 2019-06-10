@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RegistrationComponent} from './registration.component';
 import {AuthModule} from '../auth.module';
 import {RouterModule, Routes} from '@angular/router';
+import {MatButtonModule, MatDialogModule} from '@angular/material';
 
 export const ROUTES: Routes = [{
   path: '',
@@ -16,7 +17,9 @@ export const ROUTES: Routes = [{
   imports: [
     CommonModule,
     AuthModule.forRoot(),
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    MatButtonModule,
+    MatDialogModule
   ]
 })
 export class RegistrationModule {

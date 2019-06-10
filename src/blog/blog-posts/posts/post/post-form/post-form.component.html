@@ -51,7 +51,7 @@
             Create Post
           </button>
 
-          <button [disabled]="required" mat-raised-button type="button" (click)="updatePost()">
+          <button [disabled]="required" mat-raised-button type="button" *ngIf="post" (click)="updatePost()">
             Save Post
           </button>
 

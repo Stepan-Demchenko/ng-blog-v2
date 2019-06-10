@@ -24,7 +24,8 @@ export class PostsService {
     return this.http.get<Posts>(`${this.url}/${id}`);
   }
 
-  public update(id: string, data): any {
+  public update(id: string, data): Observable<any> {
+    console.log('lol');
     return this.http.put<Posts>(`${this.url}/${id}`, data);
   }
 

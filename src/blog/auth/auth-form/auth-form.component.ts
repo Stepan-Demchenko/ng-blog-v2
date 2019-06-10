@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
 
 @Component({
@@ -11,7 +11,7 @@ export class AuthFormComponent {
   hide = true;
   icon = 'visibility_off';
   @Output() formSubmit = new EventEmitter<FormGroup>();
-
+  @ViewChild('form') form: NgForm;
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -23,6 +23,7 @@ export class AuthFormComponent {
     public dialogRef: MatDialogRef<AuthFormComponent>,
   ) {
   }
+
 
   onSubmit() {
     this.formSubmit.emit(this.loginForm);

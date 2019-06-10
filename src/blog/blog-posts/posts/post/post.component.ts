@@ -30,6 +30,7 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.postId = this.activatedRoute.snapshot.params.id;
     if (this.activatedRoute.snapshot.params.id) {
       this.activatedRoute.data.pipe(takeUntil(this.unsubscribe)).subscribe((data: any) => {
         this.posts$ = of(data.post);
@@ -48,15 +49,12 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   editPost(event) {
-    if (event) {
-      this.postsService.update(this.postId, event).pipe(takeUntil(this.unsubscribe)).subscribe(result => {
-        this.route.navigateByUrl('/');
-        this.infoMessage.alertShow('Post is updated!');
-      }, error => {
-        this.infoMessage.alertShow();
-      });
-    }
-    return this.route.navigateByUrl('/');
+    this.postsService.update(this.postId, event).pipe(takeUntil(this.unsubscribe)).subscribe(result => {
+      this.route.navigateByUrl('/');
+      this.infoMessage.alertShow('Post is updated!');
+    }, error => {
+      this.infoMessage.alertShow();
+    });
   }
 
   ngOnDestroy(): void {
