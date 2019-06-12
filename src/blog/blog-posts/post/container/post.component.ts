@@ -36,11 +36,8 @@ export class PostComponent implements OnInit, OnDestroy {
     //     this.posts$ = of(data.post);
     //   });
     // }
-    console.log(this.activatedRoute.snapshot.params.id);
-    if (this.activatedRoute.snapshot.params.id) {
-      this.postId = this.activatedRoute.snapshot.params.id;
-      this.posts$ = this.store.select(fromStore.getSelectedPost(this.postId));
-    }
+    this.postId = this.activatedRoute.snapshot.params.id;
+    this.posts$ = this.store.select(fromStore.getSelectedPost(this.postId));
   }
 
   addPost(event) {

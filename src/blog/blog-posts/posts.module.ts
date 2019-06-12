@@ -31,7 +31,7 @@ export const ROUTES: Routes = [
   },
   {
     canActivate: [AuthGuard],
-    path: 'post/new',
+    path: 'new/post',
     component: PostComponent
   },
   {

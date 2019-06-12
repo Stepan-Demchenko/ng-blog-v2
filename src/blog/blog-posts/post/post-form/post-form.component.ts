@@ -51,6 +51,7 @@ export class PostFormComponent implements OnChanges {
   }
 
   createPost() {
+    this.postForm.value.image = 'https://cdn.stocksnap.io/img-thumbs/960w/V5DUZ3DZYA.jpg';
     this.create.emit(this.postForm.value);
   }
 
@@ -72,6 +73,5 @@ export class PostFormComponent implements OnChanges {
         this.imgUrl = reader.result;
       };
     }
-    this.postForm.value.image = 'https://cdn.stocksnap.io/img-thumbs/960w/V5DUZ3DZYA.jpg';
   }
 }
