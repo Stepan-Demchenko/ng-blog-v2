@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {PostsService} from '../../services/posts.service';
 import {Observable, of, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
@@ -28,18 +28,19 @@ export class PostComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private store: Store<fromStore.PostsState>
   ) {
-
-
   }
 
   ngOnInit() {
-    this.postId = this.activatedRoute.snapshot.params.id;
     // if (this.activatedRoute.snapshot.params.id) {
     //   this.activatedRoute.data.pipe(takeUntil(this.unsubscribe)).subscribe((data: any) => {
     //     this.posts$ = of(data.post);
     //   });
     // }
-    this.posts$ = this.store.select(fromStore.getSelectedPost(this.postId));
+    console.log(this.activatedRoute.snapshot.params.id);
+    if (this.activatedRoute.snapshot.params.id) {
+      this.postId = this.activatedRoute.snapshot.params.id;
+      this.posts$ = this.store.select(fromStore.getSelectedPost(this.postId));
+    }
   }
 
   addPost(event) {

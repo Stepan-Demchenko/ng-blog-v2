@@ -1,4 +1,5 @@
 .post-container {
+  margin: 1% 1% 1% 1%;
   display: flex;
   flex-direction: column;
 
@@ -23,13 +24,8 @@
   }
 
   .content {
+    margin-top: 1%;
     font-size: 2vh;
-    margin: {
-      top: 3%;
-      left: 1%;
-      right: 1%;
-      bottom: 1%;
-    }
   }
 
   .author {

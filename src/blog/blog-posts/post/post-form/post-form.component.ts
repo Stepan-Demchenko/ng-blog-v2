@@ -26,10 +26,6 @@ export class PostFormComponent implements OnChanges {
 
   constructor(
     public fb: FormBuilder,
-    private route: ActivatedRoute,
-    private postsService: PostsService,
-    private router: Router,
-    private infoMessage: InfoMessageService
   ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
@@ -46,9 +42,11 @@ export class PostFormComponent implements OnChanges {
       const value = this.post;
       this.postForm.patchValue(value);
       this.imgUrl = this.postForm.value.image;
+      console.log('kek');
     } else {
       this.isCreate = true;
       this.postForm.reset();
+      console.log('lol');
     }
   }
 

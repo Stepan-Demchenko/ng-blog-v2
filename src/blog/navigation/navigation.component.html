@@ -18,7 +18,7 @@
       </mat-menu>
     </ng-template>
     <ng-container *ngIf="isAuth | async else signIn">
-      <button mat-button [routerLink]="['/post/new']">
+      <button mat-button [routerLink]="['post/new']">
         <mat-icon>fiber_new</mat-icon>
       </button>
       <button mat-button (click)="exit()">

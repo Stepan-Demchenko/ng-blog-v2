@@ -5,3 +5,35 @@
 mat-card:first-child {
   margin-top: 1%;
 }
+
+.card {
+  background: aliceblue;
+}
+
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.title:hover {
+  color: dodgerblue;
+  cursor: pointer;
+}
+
+.entry-header {
+  font-size: 0.9em;
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  mat-icon {
+    vertical-align: text-bottom;
+  }
+
+  span {
+    color: #888;
+  }
+}
+

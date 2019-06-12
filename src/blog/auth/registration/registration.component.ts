@@ -17,17 +17,14 @@ export class RegistrationComponent {
     private authService: AuthService,
     private infoMessage: InfoMessageService,
     private dialog: MatDialog
-  ) { }
+  ) {
+  }
 
 
   regUser(event: FormGroup) {
-    this.authService.register(event.value).pipe(catchError(err =>
-      of(
-        this.infoMessage.alertShow(),
-        this.dialog.closeAll()
-      ))).subscribe(() => {
+    this.authService.register(event.value).subscribe(() => {
       this.dialog.closeAll();
-    });
+    }, error1 => this.infoMessage.alertShow());
   }
 
 }
