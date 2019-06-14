@@ -45,13 +45,13 @@
         </mat-card-content>
         <mat-card-actions>
 
-          <button [disabled]="required" mat-raised-button color="primary" type="button" *ngIf="!post" class="button"
+          <button [disabled]="required" mat-raised-button color="primary" type="button" *ngIf="isCreate" class="button"
                   (click)="createPost()">
             <mat-icon>save</mat-icon>
             Create Post
           </button>
 
-          <button [disabled]="required" mat-raised-button type="button" *ngIf="post" (click)="updatePost()">
+          <button [disabled]="required" mat-raised-button type="button" *ngIf="!isCreate" (click)="updatePost()">
             Save Post
           </button>
 

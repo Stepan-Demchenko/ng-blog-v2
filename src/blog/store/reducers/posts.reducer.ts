@@ -2,7 +2,7 @@ import {Posts} from '../../blog-posts/models/posts';
 import * as fromPosts from '../actions/posts.actions';
 
 export interface PostsState {
-  data: Posts;
+  data: Posts[];
   loaded: boolean;
   loading: boolean;
 }

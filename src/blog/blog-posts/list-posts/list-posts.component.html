@@ -1,35 +1,5 @@
 <div class="container">
-  <!--  <div class="row">-->
-  <!--    <div class="col-md-4" *ngFor="let list of listData$ | async">-->
-  <!--      <mat-card class="card">-->
-  <!--        <mat-card-header>-->
-  <!--          <div mat-card-avatar class="example-header-image"></div>-->
-  <!--          <mat-card-title>{{list.title}}</mat-card-title>-->
-  <!--          <mat-card-subtitle>{{list.author}}</mat-card-subtitle>-->
-  <!--        </mat-card-header>-->
-  <!--        <img mat-card-image src="{{list.image}}" alt="Photo of a Shiba Inu">-->
-  <!--        <mat-card-content>-->
-  <!--          <p>-->
-  <!--            {{list.description}}-->
-  <!--          </p>-->
-  <!--        </mat-card-content>-->
-  <!--        <mat-card-actions>-->
-  <!--          <button mat-button [routerLink]="['/post/', list._id]">MORE</button>-->
-
-  <!--          <ng-container *ngIf="isAuth | async">-->
-  <!--            <button mat-button [routerLink]="['/post/edit/', list._id]">-->
-  <!--              <mat-icon>edit</mat-icon>-->
-  <!--            </button>-->
-  <!--            <button mat-button (click)="deletePostDialog(list._id, list.title)">-->
-  <!--              <mat-icon>delete_forever</mat-icon>-->
-  <!--            </button>-->
-  <!--          </ng-container>-->
-
-  <!--        </mat-card-actions>-->
-  <!--      </mat-card>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <div class="row row-flex">
+  <div class="row row-flex mt-3">
     <div class="col-12 shadow p-3 mb-5 bg-white rounded"
          *ngFor="let post of listData$ | async">
       <div class="row content">
@@ -40,7 +10,7 @@
           <div class="d-flex justify-content-between entry-header">
             <span>
               <mat-icon>person</mat-icon>
-              <span class="aligned-with-icon">{{post.author}}</span>
+              <span>{{post.author}}</span>
             </span>
             <div *ngIf="isAuth | async">
               <span>
@@ -60,5 +30,12 @@
         </div>
       </div>
     </div>
+<!--    <div class="col-12 d-flex justify-content-end">-->
+<!--      <mat-paginator [length]="length"-->
+<!--                     [pageSize]="pageSize"-->
+<!--                     [pageSizeOptions]="pageSizeOptions"-->
+<!--                      (page)="onPageChange($event)">-->
+<!--      </mat-paginator>-->
+<!--    </div>-->
   </div>
 </div>

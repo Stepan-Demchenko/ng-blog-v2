@@ -16,8 +16,8 @@ export class PostsService {
   ) {
   }
 
-  public getList(): Observable<Posts> {
-    return this.http.get<Posts>(this.url);
+  public getList(): Observable<Posts[]> {
+    return this.http.get<Posts[]>(this.url);
   }
 
   public getPost(id: string): Observable<Posts> {

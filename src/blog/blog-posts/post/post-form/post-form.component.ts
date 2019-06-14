@@ -1,10 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
 import {Posts} from '../../models/posts';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {PostsService} from '../../services/posts.service';
-import {InfoMessageService} from '../../../services/info-message.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -16,9 +12,8 @@ export class PostFormComponent implements OnChanges {
 
   @Output() create = new EventEmitter<Posts>();
   @Output() edit = new EventEmitter<Posts>();
-  @Input() post: Posts;
+  @Input() post: Posts[];
 
-  private unsubscribe: Subject<void> = new Subject();
   id: string;
   postForm: FormGroup;
   imgUrl;
@@ -37,16 +32,15 @@ export class PostFormComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.post.currentValue) {
+    if (changes.post.currentValue.length >= 1) {
       this.isCreate = false;
-      const value = this.post;
-      this.postForm.patchValue(value);
+      this.postForm.patchValue(this.post[0]);
       this.imgUrl = this.postForm.value.image;
-      console.log('kek');
+      console.log('lol');
     } else {
       this.isCreate = true;
       this.postForm.reset();
-      console.log('lol');
+      console.log('kek');
     }
   }
 

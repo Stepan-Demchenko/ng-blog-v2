@@ -12,6 +12,7 @@ import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {Store} from '@ngrx/store';
 import * as fromStore from '../../store';
 
+
 @Component({
   selector: 'app-list-posts',
   templateUrl: './list-posts.component.html',
@@ -20,8 +21,9 @@ import * as fromStore from '../../store';
 export class ListPostsComponent implements OnInit, OnDestroy {
   private unsubscribe: Subject<void> = new Subject();
 
-  listData$: Observable<Posts>;
+  listData$: Observable<Posts[]>;
   isAuth: Observable<Auth>;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -41,10 +43,6 @@ export class ListPostsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new fromStore.LoadPosts());
   }
 
-  // public getList() {
-  //   this.listData$ = this.postsService.getList();
-  // }
-
   public deletePostDialog(id: string, title: string) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '400px',
@@ -58,14 +56,6 @@ export class ListPostsComponent implements OnInit, OnDestroy {
     }, error1 => {
       this.infoMessage.alertShow('Something went wrong');
     });
-  }
-
-  read() {
-    return this.router.navigate([{
-      outlets: {
-        post: ['read-post']
-      }
-    }]);
   }
 
   ngOnDestroy(): void {

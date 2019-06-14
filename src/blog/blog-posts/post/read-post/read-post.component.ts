@@ -12,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ReadPostComponent implements OnInit {
 
-  post$: Observable<Posts>;
+  post$: Observable<Posts[]>;
   private postId;
 
   constructor(private store: Store<fromStore.PostsState>,

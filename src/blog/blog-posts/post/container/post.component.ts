@@ -18,7 +18,7 @@ import * as fromStore from '../../../store';
 export class PostComponent implements OnInit, OnDestroy {
   private unsubscribe: Subject<void> = new Subject();
   private postId;
-  public posts$: Observable<Posts>;
+  public posts$: Observable<Posts[]>;
 
 
   constructor(
